@@ -1,0 +1,38 @@
+[Script Info]
+Title: Blackwood 60s Walkthrough
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: LowerThird,Consolas,22,&H0033FF77,&H00000000,&H00050308,&HA0000000,-1,0,0,0,100,100,1,0,3,3,0,2,30,30,80,1
+Style: SubTitle,Consolas,14,&H00E0E0E0,&H00000000,&H00050308,&HA0000000,0,0,0,0,100,100,0,0,3,2,0,2,30,30,56,1
+Style: TechTag,Consolas,13,&H0033AAFF,&H00000000,&H00050308,&HA0000000,-1,0,0,0,100,100,1,0,3,2,0,8,30,30,46,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,00:00:01.00,00:00:09.50,TechTag,,0,0,0,,RIVE CLI + GPU CANVAS ENTRY
+Dialogue: 0,00:00:01.00,00:00:09.50,LowerThird,,0,0,0,,BLACKWOOD // THE HOUSE THAT WATCHES BACK
+Dialogue: 0,00:00:01.00,00:00:09.50,SubTitle,,0,0,0,,Interactive Surveillance Terminal • Pointer-Driven Flashlight • 4 Live Camera Feeds
+
+Dialogue: 0,00:00:09.50,00:00:20.50,TechTag,,0,0,0,,FEATURE: OCCULT BESTIARY
+Dialogue: 0,00:00:09.50,00:00:20.50,LowerThird,,0,0,0,,CLASSIFIED MONSTER BESTIARY // DOSSIER
+Dialogue: 0,00:00:09.50,00:00:20.50,SubTitle,,0,0,0,,4 Animated Halloween Entities: Scarecrow, Spectral Bride, Pumpkin Stalker & Demon
+
+Dialogue: 0,00:00:20.50,00:00:36.50,TechTag,,0,0,0,,FEATURE: 3D "THE FURTHER"
+Dialogue: 0,00:00:20.50,00:00:36.50,LowerThird,,0,0,0,,THE FURTHER // 3D SPECTRAL INVESTIGATION
+Dialogue: 0,00:00:20.50,00:00:36.50,SubTitle,,0,0,0,,EMF Ghost Detector Meter • Floating Haunted Words • Background Voice Synthesizer
+
+Dialogue: 0,00:00:36.50,00:00:45.50,TechTag,,0,0,0,,NARRATIVE ESCALATION
+Dialogue: 0,00:00:36.50,00:00:45.50,LowerThird,,0,0,0,,TERMINAL CORRUPTION // SYSTEM BREACH
+Dialogue: 0,00:00:36.50,00:00:45.50,SubTitle,,0,0,0,,WGSL Scanline Distortion • Heartbeat Audio Tension • Security Grid Breakdown
+
+Dialogue: 0,00:00:45.50,00:00:51.50,TechTag,,0,0,0,,HORROR CLIMAX
+Dialogue: 0,00:00:45.50,00:00:51.50,LowerThird,,0,0,0,,FINAL REVEAL // IT SEES YOU
+Dialogue: 0,00:00:45.50,00:00:51.50,SubTitle,,0,0,0,,Entity Breaches Containment • 4th-Wall Terminal Lockdown
+
+Dialogue: 0,00:00:51.50,00:00:59.50,TechTag,,0,0,0,,CONTAINMENT PURGE
+Dialogue: 0,00:00:51.50,00:00:59.50,LowerThird,,0,0,0,,EMERGENCY REBOOT // SURVEILLANCE RESTORED
+Dialogue: 0,00:00:51.50,00:00:59.50,SubTitle,,0,0,0,,Built with Rive CLI, RML, Luau & WGSL Shaders • Tag @rive_app #rivehalloweenchallenge
