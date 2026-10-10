@@ -2,6 +2,7 @@ import { useReducer, useEffect, useCallback, useRef } from "react";
 import { useRiveController } from "../rive/useRiveController";
 import { RiveCanvas } from "../rive/RiveCanvas";
 import { HalloweenRoomCanvas } from "../components/HalloweenRoomCanvas";
+import { Haunted3DExperience } from "../components/Haunted3DExperience";
 import { FlashlightOverlay } from "../components/FlashlightOverlay";
 import { ShaderCanvas } from "../shaders/ShaderCanvas";
 import { TerminalOverlay } from "../components/TerminalOverlay";
@@ -204,6 +205,14 @@ export function App() {
         state={state}
         dispatch={dispatch}
       />
+
+      {/* 7. Real-time 3D Haunted Corridor & Ghost Whisper Investigation Mode */}
+      {state.activeTab === "spectral3d" && (
+        <Haunted3DExperience
+          onExit={() => dispatch({ type: "SET_ACTIVE_TAB", tab: "surveillance" })}
+          isAudioMuted={state.isAudioMuted}
+        />
+      )}
     </main>
   );
 }

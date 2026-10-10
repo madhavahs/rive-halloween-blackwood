@@ -6,7 +6,7 @@ import { soundEngine } from "../audio/SoundEngine";
 interface UseKeyboardShortcutsOptions {
   dispatch: React.Dispatch<GameAction>;
   systemState: SystemState;
-  activeTab?: "surveillance" | "dossier";
+  activeTab?: "surveillance" | "dossier" | "spectral3d";
   onCameraChange?: (cam: number) => void;
   onToggleMute?: () => void;
 }
@@ -60,6 +60,15 @@ export function useKeyboardShortcuts({
         const nextTab = activeTab === "dossier" ? "surveillance" : "dossier";
         dispatch({ type: "SET_ACTIVE_TAB", tab: nextTab });
         soundEngine.playCameraSwitch();
+      }
+
+      // Escape key: Return to surveillance from 3D or Dossier
+      if (e.key === "Escape") {
+        if (activeTab !== "surveillance") {
+          e.preventDefault();
+          dispatch({ type: "SET_ACTIVE_TAB", tab: "surveillance" });
+          soundEngine.playCameraSwitch();
+        }
       }
 
       // Reboot terminal: 'r'

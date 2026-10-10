@@ -431,6 +431,104 @@ export class SoundEngine {
   }
 
   /**
+   * Spoken ghost whispers in the background synthesizing eerie horror phrases.
+   */
+  public playGhostWhisperVoice(phrase?: string): void {
+    if (this.isMuted) return;
+
+    const phrases = [
+      "He is behind you...",
+      "Do not look in the mirror...",
+      "Leave this place...",
+      "We are trapped in the darkness...",
+      "Redrum... redrum...",
+      "Do not turn off the light...",
+      "The Further calls to you...",
+      "She wanders through the corridor...",
+      "Run... while you still can...",
+    ];
+
+    const textToSpeak = phrase || phrases[Math.floor(Math.random() * phrases.length)]!;
+
+    // 1. Play procedural spectral whisper formant sweep
+    this.playWhisper();
+
+    // 2. Play Web Speech Synthesis whisper if supported
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      try {
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
+        utterance.rate = 0.72; // Slow, dragging
+        utterance.pitch = 0.25; // Deep, guttural supernatural pitch
+        utterance.volume = 0.65;
+        window.speechSynthesis.speak(utterance);
+      } catch {
+        // Speech synthesis fallback
+      }
+    }
+  }
+
+  /**
+   * Creepy antique music box chime (The Conjuring / Annabelle tribute).
+   */
+  public playMusicBoxMelody(): void {
+    if (!this.ctx || !this.masterGain || this.isMuted) return;
+
+    try {
+      const now = this.ctx.currentTime;
+      // High delicate celesta notes with exponential decay
+      const notes = [880, 1046.5, 987.77, 783.99, 659.25];
+      notes.forEach((freq, idx) => {
+        if (!this.ctx || !this.masterGain) return;
+        const noteTime = now + idx * 0.28;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(freq, noteTime);
+
+        gain.gain.setValueAtTime(0.18, noteTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, noteTime + 0.65);
+
+        osc.connect(gain);
+        gain.connect(this.masterGain);
+
+        osc.start(noteTime);
+        osc.stop(noteTime + 0.7);
+      });
+    } catch {
+      // Audio error catch
+    }
+  }
+
+  /**
+   * Silent Hill / Phasmophobia style EMF meter static crackle and clicking beep.
+   */
+  public playEMFDetectorBeep(intensity = 1.0): void {
+    if (!this.ctx || !this.masterGain || this.isMuted) return;
+
+    try {
+      const now = this.ctx.currentTime;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = "sawtooth";
+      osc.frequency.setValueAtTime(800 + intensity * 600, now);
+      osc.frequency.exponentialRampToValueAtTime(300, now + 0.05);
+
+      gain.gain.setValueAtTime(0.2 * Math.min(1.0, intensity), now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+
+      osc.connect(gain);
+      gain.connect(this.masterGain);
+
+      osc.start(now);
+      osc.stop(now + 0.07);
+    } catch {
+      // Audio error catch
+    }
+  }
+
+  /**
    * Clean up and close audio context.
    */
   public dispose(): void {

@@ -8,7 +8,7 @@ export interface ExtendedGameState extends GameState {
   isAudioMuted: boolean;
   batteryLevel: number;
   panicLevel: number;
-  activeTab: "surveillance" | "dossier";
+  activeTab: "surveillance" | "dossier" | "spectral3d";
   isEntityIlluminated: boolean;
 }
 
@@ -17,7 +17,7 @@ export type GameAction =
   | { type: "UPDATE_FLASHLIGHT"; position: { x: number; y: number } }
   | { type: "TOGGLE_FLASHLIGHT" }
   | { type: "TOGGLE_AUDIO" }
-  | { type: "SET_ACTIVE_TAB"; tab: "surveillance" | "dossier" }
+  | { type: "SET_ACTIVE_TAB"; tab: "surveillance" | "dossier" | "spectral3d" }
   | { type: "SET_ENTITY_ILLUMINATED"; illuminated: boolean }
   | { type: "TICK"; deltaSeconds: number }
   | { type: "ADVANCE_STATE" }

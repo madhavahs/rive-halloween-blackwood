@@ -54,7 +54,7 @@ export const TerminalOverlay: React.FC<TerminalOverlayProps> = ({
     controller?.boot();
   };
 
-  const handleToggleDossier = (tab: "surveillance" | "dossier") => {
+  const handleToggleDossier = (tab: "surveillance" | "dossier" | "spectral3d") => {
     soundEngine.unlock();
     soundEngine.playCameraSwitch();
     dispatch({ type: "SET_ACTIVE_TAB", tab });
@@ -162,6 +162,20 @@ export const TerminalOverlay: React.FC<TerminalOverlayProps> = ({
               }}
             >
               [TAB] 🎃 MONSTER DOSSIER
+            </button>
+            <button
+              onClick={() => handleToggleDossier("spectral3d")}
+              style={{
+                backgroundColor: state.activeTab === "spectral3d" ? "rgba(255, 42, 75, 0.25)" : "transparent",
+                color: state.activeTab === "spectral3d" ? "#ff2a4b" : "#888",
+                border: `1px solid ${state.activeTab === "spectral3d" ? "#ff2a4b" : "rgba(255, 255, 255, 0.15)"}`,
+                padding: "2px 8px",
+                fontFamily: "monospace",
+                cursor: "pointer",
+                fontWeight: "bold",
+              }}
+            >
+              [3D] 👁️ THE FURTHER (3D MODE)
             </button>
           </div>
 

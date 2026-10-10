@@ -19,7 +19,7 @@ async function verifyBrowser() {
     consoleErrors.push(err.message);
   });
 
-  const targetUrl = process.env.TARGET_URL || "http://localhost:5173/";
+  const targetUrl = process.env.TARGET_URL || "http://localhost:4173/";
   console.log(`Navigating to ${targetUrl} ...`);
   await page.goto(targetUrl, { waitUntil: "networkidle" });
   await page.waitForTimeout(1000);
@@ -59,6 +59,22 @@ async function verifyBrowser() {
 
   // Return to surveillance
   await page.click("button:has-text('CLOSE DOSSIER')");
+  await page.waitForTimeout(400);
+
+  // 5.5 Enter 3D Mode // The Further Spectral Investigation
+  await page.click("button:has-text('THE FURTHER')");
+  await page.waitForTimeout(1000);
+  await page.mouse.move(640, 360);
+  await page.waitForTimeout(600);
+  await page.screenshot({ path: "shots/halloween-3d-spectral.png" });
+  console.log("Captured 3D Mode Spectral Investigation -> shots/halloween-3d-spectral.png");
+
+  // Test Ghost Whisper trigger in 3D
+  await page.click("button:has-text('GHOST WHISPER')");
+  await page.waitForTimeout(400);
+
+  // Return to surveillance from 3D mode
+  await page.click("button:has-text('RETURN TO SURVEILLANCE')");
   await page.waitForTimeout(400);
 
   // 6. Advance to FINAL REVEAL to test climax jumpscare
