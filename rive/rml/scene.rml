@@ -1,0 +1,173 @@
+<Rive version="1" kind="fragment">
+    <Artboard defaultStateMachineId="0:7" styleId="0:5" width="1280" height="800" name="Terminal" id="0:2">
+        <LayoutComponentStyle name="Artboard Style" id="0:5"/>
+
+        <Fill name="Background">
+            <SolidColor colorValue="FF050308" name="Color"/>
+        </Fill>
+
+        <!-- Surveillance Outer Frame -->
+        <Shape x="640" y="400" name="BorderFrame" id="0:20">
+            <Rectangle originX="0.5" originY="0.5" width="1240" height="760" cornerRadiusTL="4" name="FramePath"/>
+            <Stroke thickness="2" name="FrameStroke">
+                <SolidColor colorValue="FF15301E" name="StrokeColor"/>
+            </Stroke>
+        </Shape>
+
+        <!-- Victorian Room Background Geometry -->
+        <Shape x="640" y="400" name="RoomShadows" id="0:21">
+            <Rectangle originX="0.5" originY="0.5" width="1200" height="720" name="RoomPath"/>
+            <Fill name="RoomFill">
+                <SolidColor colorValue="FF0A080E" name="RoomColor"/>
+            </Fill>
+        </Shape>
+
+        <!-- Room Pillar Left -->
+        <Shape x="280" y="400" name="PillarLeft" id="0:22">
+            <Rectangle originX="0.5" originY="0.5" width="60" height="680" name="PillarLeftPath"/>
+            <Fill name="PillarLeftFill">
+                <SolidColor colorValue="FF0D0B12" name="PillarLeftColor"/>
+            </Fill>
+        </Shape>
+
+        <!-- Room Pillar Right -->
+        <Shape x="1000" y="400" name="PillarRight" id="0:23">
+            <Rectangle originX="0.5" originY="0.5" width="60" height="680" name="PillarRightPath"/>
+            <Fill name="PillarRightFill">
+                <SolidColor colorValue="FF0D0B12" name="PillarRightColor"/>
+            </Fill>
+        </Shape>
+
+        <!-- Lurking Entity Silhouette -->
+        <Shape x="640" y="420" name="EntityBody" id="0:30">
+            <Ellipse originX="0.5" originY="0.5" width="160" height="340" name="EntityTorso"/>
+            <Fill name="EntityFill">
+                <SolidColor colorValue="FF020204" name="EntityColor"/>
+            </Fill>
+        </Shape>
+
+        <!-- Entity Glowing Spectral Eyes -->
+        <Shape x="620" y="320" name="EyeLeft" id="0:31">
+            <Ellipse originX="0.5" originY="0.5" width="8" height="12" name="EyeLeftPath"/>
+            <Fill name="EyeLeftFill">
+                <SolidColor colorValue="FFFF2A4B" name="EyeLeftColor"/>
+            </Fill>
+        </Shape>
+        <Shape x="660" y="320" name="EyeRight" id="0:32">
+            <Ellipse originX="0.5" originY="0.5" width="8" height="12" name="EyeRightPath"/>
+            <Fill name="EyeRightFill">
+                <SolidColor colorValue="FFFF2A4B" name="EyeRightColor"/>
+            </Fill>
+        </Shape>
+
+        <!-- Scripted HUD Overlay -->
+        <LayoutComponent width="1280" height="800" styleId="0:11" name="Root Layout" id="0:10">
+            <LayoutComponentStyle layoutWidthScaleType="1" layoutHeightScaleType="1" widthUnitsValue="3" heightUnitsValue="3" name="Layout Style" id="0:11"/>
+            <ScriptedLayout scriptAssetId="0:80" name="TerminalHUD" id="0:12"/>
+        </LayoutComponent>
+
+        <!-- State Machine -->
+        <StateMachine name="System" id="0:7">
+            <StateMachineNumber name="stateIndex" id="0:91"/>
+            <StateMachineNumber name="activeCamera" id="0:92"/>
+            <StateMachineNumber name="entityDistance" id="0:93"/>
+            <StateMachineTrigger name="glitch" id="0:94"/>
+            <StateMachineTrigger name="reveal" id="0:95"/>
+
+            <StateMachineLayer name="BaseLayer" id="0:8">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState>
+                    <StateTransition stateToId="0:100"/>
+                </EntryState>
+                <AnimationState x="200" animationId="0:6" id="0:100">
+                    <StateTransition stateToId="0:101">
+                        <TransitionTriggerCondition inputId="0:94"/>
+                    </StateTransition>
+                    <StateTransition stateToId="0:102">
+                        <TransitionTriggerCondition inputId="0:95"/>
+                    </StateTransition>
+                </AnimationState>
+                <AnimationState x="400" animationId="0:70" id="0:101">
+                    <StateTransition stateToId="0:100"/>
+                </AnimationState>
+                <AnimationState x="600" animationId="0:71" id="0:102"/>
+            </StateMachineLayer>
+        </StateMachine>
+
+        <LinearAnimation loopValue="loop" duration="120" name="Idle" id="0:6">
+            <KeyedObject objectId="0:31">
+                <KeyedProperty propertyKey="18">
+                    <KeyFrameDouble value="0.2" interpolationType="linear"/>
+                    <KeyFrameDouble value="0.9" interpolationType="linear" frame="60"/>
+                    <KeyFrameDouble value="0.2" interpolationType="linear" frame="120"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="0:32">
+                <KeyedProperty propertyKey="18">
+                    <KeyFrameDouble value="0.2" interpolationType="linear"/>
+                    <KeyFrameDouble value="0.9" interpolationType="linear" frame="60"/>
+                    <KeyFrameDouble value="0.2" interpolationType="linear" frame="120"/>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+
+        <LinearAnimation duration="30" name="Glitch" id="0:70">
+            <KeyedObject objectId="0:30">
+                <KeyedProperty propertyKey="13">
+                    <KeyFrameDouble value="640" interpolationType="linear"/>
+                    <KeyFrameDouble value="655" interpolationType="linear" frame="10"/>
+                    <KeyFrameDouble value="630" interpolationType="linear" frame="20"/>
+                    <KeyFrameDouble value="640" interpolationType="linear" frame="30"/>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+
+        <LinearAnimation duration="90" name="Reveal" id="0:71">
+            <KeyedObject objectId="0:30">
+                <KeyedProperty propertyKey="16">
+                    <KeyFrameDouble value="1" interpolationType="linear"/>
+                    <KeyFrameDouble value="2.5" interpolationType="linear" frame="90"/>
+                </KeyedProperty>
+                <KeyedProperty propertyKey="17">
+                    <KeyFrameDouble value="1" interpolationType="linear"/>
+                    <KeyFrameDouble value="2.5" interpolationType="linear" frame="90"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="0:31">
+                <KeyedProperty propertyKey="18">
+                    <KeyFrameDouble value="0.5" interpolationType="linear"/>
+                    <KeyFrameDouble value="1" interpolationType="linear" frame="90"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="0:32">
+                <KeyedProperty propertyKey="18">
+                    <KeyFrameDouble value="0.5" interpolationType="linear"/>
+                    <KeyFrameDouble value="1" interpolationType="linear" frame="90"/>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+    </Artboard>
+
+    <!-- Data Binding ViewModel -->
+    <ViewModel defaultInstanceId="0:51" name="Game" id="0:50">
+        <ViewModelPropertyNumber name="activeCamera" id="0:52"/>
+        <ViewModelPropertyNumber name="signalStrength" id="0:53"/>
+        <ViewModelPropertyNumber name="systemIntegrity" id="0:54"/>
+        <ViewModelPropertyNumber name="entityDistance" id="0:55"/>
+        <ViewModelPropertyString name="logLine" id="0:56"/>
+        <ViewModelPropertyTrigger name="glitchTrigger" id="0:57"/>
+        <ViewModelPropertyTrigger name="revealTrigger" id="0:58"/>
+        <ViewModelInstance exports="true" name="Default" id="0:51">
+            <ViewModelInstanceNumber propertyValue="1" viewModelPropertyId="0:52"/>
+            <ViewModelInstanceNumber propertyValue="98" viewModelPropertyId="0:53"/>
+            <ViewModelInstanceNumber propertyValue="100" viewModelPropertyId="0:54"/>
+            <ViewModelInstanceNumber propertyValue="100" viewModelPropertyId="0:55"/>
+            <ViewModelInstanceString propertyValue="SYSTEM READY - CAM 01 ONLINE" viewModelPropertyId="0:56"/>
+            <ViewModelInstanceTrigger viewModelPropertyId="0:57"/>
+            <ViewModelInstanceTrigger viewModelPropertyId="0:58"/>
+        </ViewModelInstance>
+    </ViewModel>
+
+    <ScriptAsset file="terminal.luau" name="terminal" id="0:80"/>
+</Rive>
