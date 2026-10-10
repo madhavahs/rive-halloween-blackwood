@@ -6,11 +6,11 @@
     "apps/*"
   ],
   "scripts": {
-    "dev": "npm run dev -w apps/web",
-    "build": "npm run build -w apps/web",
-    "typecheck": "npm run typecheck -w apps/web",
-    "lint": "npm run lint -w apps/web",
-    "test": "npm run test -w apps/web",
+    "dev": "npm --prefix apps/web run dev",
+    "build": "npm --prefix apps/web run build",
+    "typecheck": "npm --prefix apps/web run typecheck",
+    "lint": "npm --prefix apps/web run lint",
+    "test": "npm --prefix apps/web run test",
     "e2e": "playwright test"
   },
   "devDependencies": {

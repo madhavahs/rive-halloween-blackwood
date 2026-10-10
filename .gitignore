@@ -5,6 +5,5 @@ dist
 *.log
 test-results
 playwright-report
-recordings/raw
-recordings/*.webm
-recordings/*.wav
+recordings/
+
